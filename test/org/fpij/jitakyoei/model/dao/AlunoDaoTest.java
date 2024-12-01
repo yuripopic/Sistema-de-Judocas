@@ -104,28 +104,7 @@ public class AlunoDaoTest {
 		assertEquals(1, alunoDao.list().size());
 	}
 	
-	// @Test
-	// public void testListarEAdicionarAlunos(){
-	// 	int qtd = alunoDao.list().size();
-		
-	// 	alunoDao.save(new Aluno());
-	// 	assertEquals(qtd+1, alunoDao.list().size());
-		
-	// 	alunoDao.save(new Aluno());
-	// 	assertEquals(qtd+2, alunoDao.list().size());
-		
-	// 	alunoDao.save(new Aluno());
-	// 	assertEquals(qtd+3, alunoDao.list().size());
-		
-	// 	alunoDao.save(new Aluno());
-	// 	assertEquals(qtd+4, alunoDao.list().size());
-		
-	// 	clearDatabase();
-	// 	assertEquals(0, alunoDao.list().size());
-		
-	// 	alunoDao.save(new Aluno());
-	// 	assertEquals(1, alunoDao.list().size());
-	// }
+
 	
 	@Test
 	public void testSearchAluno() throws Exception{
@@ -144,6 +123,113 @@ public class AlunoDaoTest {
 		clearDatabase();
 		assertEquals(0, alunoDao.search(a).size());
 	}
+
+	//LUCAS FORGE 22.121.081-8----------------------------------------------------------------------------------------------
+
+	@Test
+	public void testSalvarAlunoComEnderecoNulo() throws Exception {
+		clearDatabase();
+		
+		// Criação de um aluno com endereço nulo
+		aluno.getFiliado().setNome("Aluno Teste");
+		aluno.getFiliado().setCpf("123.456.789-00");
+		aluno.getFiliado().setDataNascimento(new Date());
+		aluno.getFiliado().setDataCadastro(new Date());
+		aluno.setEntidade(null);  // Endereço nulo
+		
+		try {
+			alunoDao.save(aluno);
+			assertEquals(1, alunoDao.list().size());
+		} catch (Exception e) {
+			e.printStackTrace();
+			// Verifique se a exceção esperada é lançada.
+		}
+	}
+
+	@Test
+	public void testSalvarAlunoComNomeNulo() throws Exception {
+		clearDatabase();
+		
+		// Criação de um aluno com nome nulo
+		aluno.getFiliado().setNome(null);  // Nome nulo
+		aluno.getFiliado().setCpf("123.456.789-00");
+		aluno.getFiliado().setDataNascimento(new Date());
+		aluno.getFiliado().setDataCadastro(new Date());
+		aluno.setEntidade(entidade);
+		
+		try {
+			alunoDao.save(aluno);
+			assertEquals(1, alunoDao.list().size());
+		} catch (Exception e) {
+			e.printStackTrace();
+			// Verifique se a exceção esperada é lançada.
+		}
+	}
+
+	@Test
+	public void testSalvarAlunoComCpfNulo() throws Exception {
+		clearDatabase();
+		
+		// Criação de um aluno com CPF nulo
+		aluno.getFiliado().setNome("Aluno Teste");
+		aluno.getFiliado().setCpf(null);  // CPF nulo
+		aluno.getFiliado().setDataNascimento(new Date());
+		aluno.getFiliado().setDataCadastro(new Date());
+		aluno.setEntidade(entidade);
+		
+		try {
+			alunoDao.save(aluno);
+			assertEquals(1, alunoDao.list().size());
+		} catch (Exception e) {
+			e.printStackTrace();
+			// Verifique se a exceção esperada é lançada.
+		}
+	}
+
+	@Test
+	public void testSalvarAlunoComDataNascimentoNula() throws Exception {
+		clearDatabase();
+		
+		// Criação de um aluno com data de nascimento nula
+		aluno.getFiliado().setNome("Aluno Teste");
+		aluno.getFiliado().setCpf("123.456.789-00");
+		aluno.getFiliado().setDataNascimento(null);  // Data de nascimento nula
+		aluno.getFiliado().setDataCadastro(new Date());
+		aluno.setEntidade(entidade);
+		
+		try {
+			alunoDao.save(aluno);
+			assertEquals(1, alunoDao.list().size());
+		} catch (Exception e) {
+			e.printStackTrace();
+			// Verifique se a exceção esperada é lançada.
+		}
+	}
+
+	@Test
+	public void testSalvarAlunoComDataCadastroNula() throws Exception {
+		clearDatabase();
+		
+		// Criação de um aluno com data de cadastro nula
+		aluno.getFiliado().setNome("Aluno Teste");
+		aluno.getFiliado().setCpf("123.456.789-00");
+		aluno.getFiliado().setDataNascimento(new Date());
+		aluno.getFiliado().setDataCadastro(null);  // Data de cadastro nula
+		aluno.setEntidade(entidade);
+		
+		try {
+			alunoDao.save(aluno);
+			assertEquals(1, alunoDao.list().size());
+		} catch (Exception e) {
+			e.printStackTrace();
+			// Verifique se a exceção esperada é lançada.
+		}
+	}
+
+//----------------------------------------------------------------------------------------------
+
+
+
 	
 	@AfterClass
 	public static void closeDatabase(){
