@@ -25,46 +25,46 @@ public class AlunoDaoTest {
 	private static Filiado filiadoProf;
 	private static Professor professor;
 	
-	@BeforeClass
-	public static void setUp(){
-		DatabaseManager.setEnviroment(DatabaseManager.TEST);
-		f1 = new Filiado();
-		f1.setNome("Aécio");
-		f1.setCpf("036.464.453-27");
-		f1.setDataNascimento(new Date());
-		f1.setDataCadastro(new Date());
-		f1.setId(1332L);
+	// @BeforeClass
+	// public static void setUp(){
+	// 	DatabaseManager.setEnviroment(DatabaseManager.TEST);
+	// 	f1 = new Filiado();
+	// 	f1.setNome("Aécio");
+	// 	f1.setCpf("036.464.453-27");
+	// 	f1.setDataNascimento(new Date());
+	// 	f1.setDataCadastro(new Date());
+	// 	f1.setId(1332L);
 		
-		endereco = new Endereco();
-		endereco.setBairro("Dirceu");
-		endereco.setCep("64078-213");
-		endereco.setCidade("Teresina");
-		endereco.setEstado("PI");
-		endereco.setRua("Rua Des. Berilo Mota");
+	// 	endereco = new Endereco();
+	// 	endereco.setBairro("Dirceu");
+	// 	endereco.setCep("64078-213");
+	// 	endereco.setCidade("Teresina");
+	// 	endereco.setEstado("PI");
+	// 	endereco.setRua("Rua Des. Berilo Mota");
 		
-		filiadoProf = new Filiado();
-		filiadoProf.setNome("Professor");
-		filiadoProf.setCpf("036.464.453-27");
-		filiadoProf.setDataNascimento(new Date());
-		filiadoProf.setDataCadastro(new Date());
-		filiadoProf.setId(3332L);
-		filiadoProf.setEndereco(endereco);
+	// 	filiadoProf = new Filiado();
+	// 	filiadoProf.setNome("Professor");
+	// 	filiadoProf.setCpf("036.464.453-27");
+	// 	filiadoProf.setDataNascimento(new Date());
+	// 	filiadoProf.setDataCadastro(new Date());
+	// 	filiadoProf.setId(3332L);
+	// 	filiadoProf.setEndereco(endereco);
 		
-		professor = new Professor();
-		professor.setFiliado(filiadoProf);
+	// 	professor = new Professor();
+	// 	professor.setFiliado(filiadoProf);
 		
-		entidade = new Entidade();
-		entidade.setEndereco(endereco);
-		entidade.setNome("Academia 1");
-		entidade.setTelefone1("(086)1234-5432");
+	// 	entidade = new Entidade();
+	// 	entidade.setEndereco(endereco);
+	// 	entidade.setNome("Academia 1");
+	// 	entidade.setTelefone1("(086)1234-5432");
 		
-		aluno = new Aluno();
-		aluno.setFiliado(f1);
-		aluno.setProfessor(professor);
-		aluno.setEntidade(entidade);
+	// 	aluno = new Aluno();
+	// 	aluno.setFiliado(f1);
+	// 	aluno.setProfessor(professor);
+	// 	aluno.setEntidade(entidade);
 		
-		alunoDao = new DAOImpl<Aluno>(Aluno.class);
-	}
+	// 	alunoDao = new DAOImpl<Aluno>(Aluno.class);
+	// }
 
 	public static void clearDatabase(){
 		List<Aluno> all = alunoDao.list();
