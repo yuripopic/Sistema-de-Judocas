@@ -29,8 +29,8 @@ public class AlunoDaoTest {
 	public static void setUp(){
 		DatabaseManager.setEnviroment(DatabaseManager.TEST);
 		f1 = new Filiado();
-		f1.setNome("");
-		f1.setCpf("");
+		f1.setNome("Aécio");
+		f1.setCpf("036.464.453-27");
 		f1.setDataNascimento(new Date());
 		f1.setDataCadastro(new Date());
 		f1.setId(1332L);
@@ -81,8 +81,8 @@ public class AlunoDaoTest {
 		clearDatabase();
 		
 		alunoDao.save(aluno);
-		assertEquals("", alunoDao.get(aluno).getFiliado().getCpf());
-		assertEquals("", alunoDao.get(aluno).getFiliado().getNome());
+		assertEquals("036.464.453-27", alunoDao.get(aluno).getFiliado().getCpf());
+		assertEquals("Aécio", alunoDao.get(aluno).getFiliado().getNome());
 		assertEquals("Professor", alunoDao.get(aluno).getProfessor().getFiliado().getNome());
 		assertEquals("Dirceu", alunoDao.get(aluno).getProfessor().getFiliado().getEndereco().getBairro());
 	}
