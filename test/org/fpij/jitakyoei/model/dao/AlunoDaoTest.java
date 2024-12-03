@@ -74,6 +74,24 @@ public class AlunoDaoTest {
 		}
 		assertEquals(0, alunoDao.list().size());
 	}
+
+	@Test
+	public void checkConstructorWithUseEquals(){
+		DAO<Aluno> alunoDao = new DAOImpl<Aluno>(Aluno.class, false );
+
+		assertNotNull(alunoDao);
+	}
+
+	@Test
+	public void checkConstructorWithUseEqualsAndValidatorCustom(){
+
+		DAO<Aluno> alunoDao = new DAOImpl<Aluno>(
+				Aluno.class,
+				new AlunoValidator(),
+				false);
+
+		assertNotNull(alunoDao);
+	}
 	
 	
 	@Test
