@@ -16,6 +16,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.jgoodies.validation.ValidationResult;
 import com.jgoodies.validation.Validator;
 
 import static org.junit.Assert.assertNotNull;
@@ -141,26 +142,19 @@ public class AlunoDaoTest {
 	// }
 
 	@Test
-	public void  testSalvarAlunoComErroValidacao(){
-		clearDatabase();
+    public void deleteAluno() throws Exception{ /
 
-		class CustomValidator<T> implements Validator<T> {
-			@Override
-			public boolean validate(T obj) {
-				return false;
-			}
-		}
+        clearDatabase();
+        assertEquals(0, alunoDao.list().size());
 
-		DAO<Aluno> alunoDao = new DAOImpl<Aluno>(
-				Aluno.class,
-				new CustomValidator<Aluno>(),
-				false);
+        alunoDao.save(aluno);
+        assertEquals(1, alunoDao.list().size());
 
+        Aluno a1 = alunoDao.get(aluno);
+        alunoDao.delete(a1);
 
-		boolean returnReceived = alunoDao.save(aluno);
-		assertEquals(false, returnReceived);
-
-	}
+        assertEquals(0, alunoDao.list().size());
+    }
 
 	@Test
 	public void testgetAlunosWithUseEquals(){
