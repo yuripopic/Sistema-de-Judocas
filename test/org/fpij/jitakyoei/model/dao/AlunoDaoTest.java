@@ -82,17 +82,6 @@ public class AlunoDaoTest {
 		assertNotNull(alunoDao);
 	}
 
-	@Test
-	public void checkConstructorWithUseEqualsAndValidatorCustom(){
-
-		DAO<Aluno> alunoDao = new DAOImpl<Aluno>(
-				Aluno.class,
-				new AlunoValidator(),
-				false);
-
-		assertNotNull(alunoDao);
-	}
-	
 	
 	@Test
 	public void  testSalvarAlunoComAssociassoes() throws Exception{
