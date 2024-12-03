@@ -64,7 +64,7 @@ public class AlunoDaoTest {
 		aluno.setEntidade(entidade);
 
 
-		
+		alunoDao = new DAOImpl<Aluno>(Aluno.class);
 	}
 
 	public static void clearDatabase(){
