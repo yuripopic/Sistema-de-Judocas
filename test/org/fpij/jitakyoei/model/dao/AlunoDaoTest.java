@@ -152,6 +152,19 @@ public class AlunoDaoTest {
 	}
 
 	@Test
+    public void testGetAlunosWithUseEqualsAndEmpty(){
+        DAO<Aluno> alunoDaoTest = new DAOImpl<>(Aluno.class, true);
+
+        try {
+            Aluno retornoAluno = alunoDaoTest.get(aluno);
+        } catch (Exception e){
+            assertNotNull(e);
+            assertEquals(e.getClass(), IllegalArgumentException.class);
+
+        }
+    }
+
+	@Test
 	public void testSearchAluno() throws Exception{
 		clearDatabase();
 		alunoDao.save(aluno);
