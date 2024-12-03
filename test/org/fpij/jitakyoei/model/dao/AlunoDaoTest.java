@@ -10,6 +10,7 @@ import org.fpij.jitakyoei.model.beans.Endereco;
 import org.fpij.jitakyoei.model.beans.Entidade;
 import org.fpij.jitakyoei.model.beans.Filiado;
 import org.fpij.jitakyoei.model.beans.Professor;
+import org.fpij.jitakyoei.model.validator.AlunoValidator;
 import org.fpij.jitakyoei.util.DatabaseManager;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -163,6 +164,17 @@ public class AlunoDaoTest {
 
         }
     }
+
+	@Test
+	public void checkConstructorWithUseEqualsAndValidatorCustom(){
+
+		DAO<Aluno> alunoDao = new DAOImpl<Aluno>(
+				Aluno.class,
+				new AlunoValidator(),
+				false);
+
+		assertNotNull(alunoDao);
+	}
 
 	@Test
 	public void testSearchAluno() throws Exception{
