@@ -1,6 +1,7 @@
 package org.fpij.jitakyoei.model.dao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.Date;
 import java.util.List;
@@ -10,6 +11,8 @@ import org.fpij.jitakyoei.model.beans.Endereco;
 import org.fpij.jitakyoei.model.beans.Entidade;
 import org.fpij.jitakyoei.model.beans.Filiado;
 import org.fpij.jitakyoei.model.beans.Professor;
+import org.fpij.jitakyoei.model.validator.AlunoValidator;
+import org.fpij.jitakyoei.model.validator.Validator;
 import org.fpij.jitakyoei.util.DatabaseManager;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -74,6 +77,46 @@ public class AlunoDaoTest {
 		}
 		assertEquals(0, alunoDao.list().size());
 	}
+
+	@Test
+	public void checkConstructorWithUseEquals(){
+		DAO<Aluno> alunoDao = new DAOImpl<Aluno>(Aluno.class, false );
+
+		assertNotNull(alunoDao);
+	}
+
+	@Test
+	public void checkConstructorWithUseEqualsAndValidatorCustom(){
+
+		DAO<Aluno> alunoDao = new DAOImpl<Aluno>(
+				Aluno.class,
+				new AlunoValidator(),
+				false);
+
+		assertNotNull(alunoDao);
+	}
+	@Test
+	public void  testSalvarAlunoComErroValidacao(){
+		clearDatabase();
+
+		class CustomValidator<T> implements Validator<T> {
+			@Override
+			public boolean validate(T obj) {
+				return false;
+			}
+		}
+
+		DAO<Aluno> alunoDao = new DAOImpl<Aluno>(
+				Aluno.class,
+				new CustomValidator<Aluno>(),
+				false);
+
+
+		boolean returnReceived = alunoDao.save(aluno);
+		assertEquals(false, returnReceived);
+
+	}
+
 	
 	
 	@Test
