@@ -138,6 +138,28 @@ public class AlunoDaoTest {
 	// }
 
 	@Test
+	public void  testSalvarAlunoComErroValidacao(){
+		clearDatabase();
+
+		class CustomValidator<T> implements Validator<T> {
+			@Override
+			public boolean validate(T obj) {
+				return false;
+			}
+		}
+
+		DAO<Aluno> alunoDao = new DAOImpl<Aluno>(
+				Aluno.class,
+				new CustomValidator<Aluno>(),
+				false);
+
+
+		boolean returnReceived = alunoDao.save(aluno);
+		assertEquals(false, returnReceived);
+
+	}
+
+	@Test
 	public void testgetAlunosWithUseEquals(){
 		int qtd = alunoDao.list().size();
 
