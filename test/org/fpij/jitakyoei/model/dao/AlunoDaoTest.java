@@ -62,8 +62,9 @@ public class AlunoDaoTest {
 		aluno.setFiliado(f1);
 		aluno.setProfessor(professor);
 		aluno.setEntidade(entidade);
+
+
 		
-		alunoDao = new DAOImpl<Aluno>(Aluno.class);
 	}
 
 	public static void clearDatabase(){
@@ -126,6 +127,7 @@ public class AlunoDaoTest {
 		alunoDao.save(new Aluno());
 		assertEquals(1, alunoDao.list().size());
 	}
+
 	
 	@Test
 	public void testSearchAluno() throws Exception{
