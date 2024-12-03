@@ -136,7 +136,21 @@ public class AlunoDaoTest {
 	// 	assertEquals(1, alunoDao.list().size());
 	// }
 
-	
+	@Test
+	public void testgetAlunosWithUseEquals(){
+		int qtd = alunoDao.list().size();
+
+		DAO<Aluno> alunoDaoTest = new DAOImpl<>(Aluno.class, true);
+
+		alunoDaoTest.save(aluno);
+		assertEquals(qtd+1, alunoDaoTest.list().size());
+
+
+		Aluno retornoAluno = alunoDaoTest.get(aluno);
+
+		assertEquals(aluno, retornoAluno);
+	}
+
 	@Test
 	public void testSearchAluno() throws Exception{
 		clearDatabase();
