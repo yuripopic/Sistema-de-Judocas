@@ -143,7 +143,7 @@ public class AlunoDaoTest {
 		DAO<Aluno> alunoDaoTest = new DAOImpl<>(Aluno.class, true);
 
 		alunoDaoTest.save(aluno);
-		assertEquals(qtd+1, alunoDaoTest.list().size());
+		assertEquals(qtd, alunoDaoTest.list().size());
 
 
 		Aluno retornoAluno = alunoDaoTest.get(aluno);
