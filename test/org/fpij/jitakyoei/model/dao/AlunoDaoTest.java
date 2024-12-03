@@ -142,7 +142,7 @@ public class AlunoDaoTest {
 	// }
 
 	@Test
-    public void deleteAluno() throws Exception{ /
+    public void deleteAluno() throws Exception{
 
         clearDatabase();
         assertEquals(0, alunoDao.list().size());
